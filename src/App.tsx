@@ -1,24 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import GamePad from './app/features/gamepad/GamePad';
+import { gameSample1 } from './sample.data';
 
 function App() {
+  const [data, setData] = useState<number[][] | null>(null);
+
+  useEffect(() => {
+    setData(gameSample1)
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {
+        data ? <GamePad data={data} /> : 'No Data '
+      }
     </div>
   );
 }
